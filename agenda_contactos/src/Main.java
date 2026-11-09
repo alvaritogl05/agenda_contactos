@@ -1,8 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        ArrayList<String> Nombre = new ArrayList<String>();
+        ArrayList<String> Tlf = new ArrayList<String>();
+        ArrayList<String> Agenda = new ArrayList<String>();
         String menu = """
              Sleccione la accion que quiere realizar
              1. Añadir Contacto
@@ -13,20 +17,48 @@ public class Main {
         String o2 = "Mostrar Contacto";
         String o3 = "Buscar Contacto";
         String o4 = "Salir";
-        int seleccion = 0;
-        while (1==1) {
-            System.out.println(menu);
-            seleccion = sc.nextInt();
-            if (seleccion == 1) System.out.println("\n \n" + "Ha seleccionado: " + o1);
-            if (seleccion == 2) System.out.println("\n \n" + "Ha seleccionado: " + o2);
-            if (seleccion == 3) System.out.println("\n \n" + "Ha seleccionado: " + o3 );
-            if (seleccion < 1 || seleccion > 4) {
-                System.out.println("Ha escogido una opcion no disponible reintente: ");
-            }
-            if (seleccion == 4) {
-                break;
+        while (true) {
+            System.out.println("\n " + menu);
+            int seleccion = sc.nextInt();
+            sc.nextLine();
+            switch (seleccion) {
+                case 1 :
+                    System.out.println("\nHa seleccionado: " + o1);
+                    System.out.println("Introduzca el Nombre: ");
+                    String contacto = sc.nextLine();
+                    Nombre.add(contacto);
+                    System.out.println("\n Introduzca el nº: ");
+                    String tel = sc.nextLine();
+                    Tlf.add(tel);
+                    Agenda.add(contacto + " " + tel);
+                    break;
+
+                case (2) :
+                    System.out.println("\n" + "Ha seleccionado: " + o2);
+                    System.out.println(Agenda);
+                    break;
+
+                case 3:
+                    System.out.println("\n " + "Ha seleccionado: " + o3);
+                    System.out.println("Introduce el nombre del contacto que buscas:");
+                    String buscar = sc.nextLine();
+                    int posicion = Nombre.indexOf(buscar);
+                    if (posicion > -1) {
+                        System.out.println(Agenda.get(posicion));
+                    } else {
+                        System.out.println("Contacto no encontrado para añadirlo pulse 1: ");
+                    }
+                    break;
+
+                case  4 :
+                    System.out.println("Ha seleccionado: " + o4);
+                    return;
+                default:
+                    System.out.println("Ha escogido una opcion no disponible reintente: ");
+                    break;
             }
         }
-        System.out.println("Ha seleccionado: " + o4);
+
     }
+
 }
